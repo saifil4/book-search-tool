@@ -1,4 +1,17 @@
 .card {
-  background: #f3f5f7;
-  margin-bottom: 10px;
+}
+
+.imageContainer {
+  width: 100%;
+  padding: 10px;
+  background: #f3f4f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.author{
+  color: #e89f5e;
+  font-weight: bold;
 }

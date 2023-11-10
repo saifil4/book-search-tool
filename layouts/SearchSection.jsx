@@ -1,12 +1,14 @@
-import React from 'react'
+import React from 'react';
+import TextInput from '../components/text-input';
+import Button from '../components/button';
 
-const SearchSection = () => {
+const SearchSection = ({ handleChange, searchValue, handleClick }) => {
     return (
-        <div className={styles.searchContainer}>
+        <div className='search-container'>
             <h1>Find your next book to read</h1>
             <div>
-                <SearchInput handleChange={handleChange} searchValue={searchValue} />
-                <button onClick={handleClick} >Search</button>
+                <TextInput onChange={handleChange} value={searchValue} />
+                <Button onClick={handleClick}>Search</Button>
             </div>
         </div>
     )
