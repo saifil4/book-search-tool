@@ -11,6 +11,11 @@ const Card = ({ item }) => {
         </div>
         <h4>{item.title}</h4>
         <p>by <span className={styles.author}>{item.author_name}</span></p>
+        {
+          item?.first_publish_year && (
+            <p>First published in {item?.first_publish_year}</p>
+          )
+        }
       </div>
     </li>
   )
