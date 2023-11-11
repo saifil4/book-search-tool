@@ -3,26 +3,36 @@ import { useState, useEffect, useMemo } from 'react';
 import styles from './page.module.css';
 import Card from '@/components/card';
 import SearchSection from '@/layouts/SearchSection';
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation';
+import { SORT_OPTIONS } from '../constants';
 
 export default function Home() {
 
   const searchParams = useSearchParams()
   const router = useRouter()
 
-  const [list, setList] = useState([]);
+  const [bookList, setBookList] = useState([]);
+  const [sortedBy, setSortedBy] = useState(null);
   const [searchValue, setSearchValue] = useState(searchParams.get('search') || '');
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
+
+
+  const filteredBooks = useMemo(() => {
+    if (sortedBy === SORT_OPTIONS.A_TO_Z) return bookList.sort((a, b) => a?.title.localeCompare(b?.title))
+    else if (sortedBy === SORT_OPTIONS.Z_TO_A) return bookList.sort((a, b) => b?.title.localeCompare(a?.title))
+    else if (sortedBy === SORT_OPTIONS.LATEST) return bookList.sort((a, b) => a?.first_publish_year.localeCompare(b?.first_publish_year))
+    return bookList
+  }, [bookList, sortedBy])
 
   const fetchData = async () => {
     if (searchValue.length === 0) return
     const res = await fetch(`http://openlibrary.org/search.json?q=${searchValue}}`);
     const data = await res.json();
     console.log(data?.docs);
-    setList(data?.docs);
+    setBookList(data?.docs);
   }
 
   const handleClick = () => {
@@ -36,17 +46,17 @@ export default function Home() {
     setSearchValue(e.target.value);
   }
 
+  const handleSort = (e) => {
+    console.log(e.target.value);
+    setSortedBy(e.target.value)
+  }
+
   return (
     <main className={styles.main}>
-      <SearchSection handleChange={handleChange} handleClick={handleClick} searchValue={searchValue} />
-      <select>
-        <option value="Author(A-Z)"></option>
-        <option value="Author(Z-A)"></option>
-        <option value="Date of Puslish Latest"></option>
-      </select>
+      <SearchSection handleChange={handleChange} handleClick={handleClick} handleSort={handleSort} searchValue={searchValue} />
       <ul className='card-list'>
-        {list?.map((item) => (
-          <Card item={item} />
+        {filteredBooks?.map((item, index) => (
+          <Card key={index} item={item} />
         ))}
       </ul>
     </main>

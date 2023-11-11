@@ -1,4 +1,7 @@
 .button {
   border: none;
   height: 30px;
+  background: #fff;
+  min-width: 100px;
+  border-radius: 15px;
 }
