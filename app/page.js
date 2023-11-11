@@ -6,6 +6,7 @@ import SearchSection from '@/layouts/SearchSection';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { SORT_OPTIONS } from '../constants';
 
+
 export default function Home() {
 
   const searchParams = useSearchParams()
@@ -14,6 +15,14 @@ export default function Home() {
   const [bookList, setBookList] = useState([]);
   const [sortedBy, setSortedBy] = useState(null);
   const [searchValue, setSearchValue] = useState(searchParams.get('search') || '');
+
+  const fetchData = async () => {
+    if (searchValue.length === 0) return
+    const res = await fetch(`http://openlibrary.org/search.json?q=${searchValue}}`);
+    const data = await res.json();
+    console.log(data?.docs);
+    setBookList(data?.docs);
+  }
 
   useEffect(() => {
     fetchData()
@@ -27,13 +36,7 @@ export default function Home() {
     return bookList
   }, [bookList, sortedBy])
 
-  const fetchData = async () => {
-    if (searchValue.length === 0) return
-    const res = await fetch(`http://openlibrary.org/search.json?q=${searchValue}}`);
-    const data = await res.json();
-    console.log(data?.docs);
-    setBookList(data?.docs);
-  }
+
 
   const handleClick = () => {
     const params = new URLSearchParams(searchParams)
