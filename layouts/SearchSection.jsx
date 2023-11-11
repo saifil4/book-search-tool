@@ -13,10 +13,11 @@ const SearchSection = ({ handleChange, searchValue, handleClick, handleSort }) =
                 <Button onClick={handleClick}>Search</Button>
                 <label>Sort by</label>
                 <select onChange={handleSort}>
-                    <option value={null}>Default</option>
+                    <option value={SORT_OPTIONS.DEFAULT}>Default</option>
                     <option value={SORT_OPTIONS.A_TO_Z}>Title A-Z</option>
                     <option value={SORT_OPTIONS.Z_TO_A}>Title Z-A</option>
                     <option value={SORT_OPTIONS.LATEST}>Latest Published</option>
+                    <option value={SORT_OPTIONS.OLDEST}>Oldest Published</option>
                 </select>
             </div>
         </div>

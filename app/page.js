@@ -1,10 +1,21 @@
 'use client'
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import styles from './page.module.css';
 import Card from '@/components/card';
 import SearchSection from '@/layouts/SearchSection';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { SORT_OPTIONS } from '../constants';
+
+
+const getData = async (searchValue) => {
+  try {
+    const res = await fetch(`http://openlibrary.org/search.json?q=${searchValue}}`);
+    const data = await res.json();
+    return data
+  } catch (e) {
+    console.error(e);
+  }
+}
 
 
 export default function Home() {
@@ -16,33 +27,43 @@ export default function Home() {
   const [sortedBy, setSortedBy] = useState(null);
   const [searchValue, setSearchValue] = useState(searchParams.get('search') || '');
 
-  const fetchData = async () => {
-    if (searchValue.length === 0) return
-    const res = await fetch(`http://openlibrary.org/search.json?q=${searchValue}}`);
-    const data = await res.json();
-    console.log(data?.docs);
-    setBookList(data?.docs);
-  }
 
   useEffect(() => {
-    fetchData()
-  }, [fetchData])
+    if (searchValue.length === 0) return
+    const data = getData(searchValue);
+    data.then((res) => {
+      setBookList(res?.docs);
+    })
+  }, [])
 
 
   const filteredBooks = useMemo(() => {
-    if (sortedBy === SORT_OPTIONS.A_TO_Z) return bookList.sort((a, b) => a?.title.localeCompare(b?.title))
-    else if (sortedBy === SORT_OPTIONS.Z_TO_A) return bookList.sort((a, b) => b?.title.localeCompare(a?.title))
-    else if (sortedBy === SORT_OPTIONS.LATEST) return bookList.sort((a, b) => a?.first_publish_year.localeCompare(b?.first_publish_year))
+    if (sortedBy == SORT_OPTIONS.A_TO_Z) {
+      return bookList.sort((a, b) => a?.title.localeCompare(b?.title))
+    }
+    else if (sortedBy === SORT_OPTIONS.Z_TO_A) {
+      return bookList.sort((a, b) => b?.title.localeCompare(a?.title))
+    }
+    else if (sortedBy === SORT_OPTIONS.LATEST) {
+      return bookList.sort((a, b) => b.first_publish_year - a.first_publish_year);
+    }
+    else if (sortedBy === SORT_OPTIONS.OLDEST) {
+      return bookList.sort((a, b) => a.first_publish_year - b.first_publish_year);
+    }
     return bookList
   }, [bookList, sortedBy])
 
 
 
   const handleClick = () => {
+    if (searchValue.length === 0) return
     const params = new URLSearchParams(searchParams)
     params.set('search', searchValue)
     router.push('/' + '?' + params.toString())
-    fetchData()
+    const data = getData(searchValue);
+    data.then((res) => {
+      setBookList(res?.docs);
+    })
   }
 
   const handleChange = (e) => {
@@ -50,8 +71,7 @@ export default function Home() {
   }
 
   const handleSort = (e) => {
-    console.log(e.target.value);
-    setSortedBy(e.target.value)
+    setSortedBy(parseInt(e.target.value))
   }
 
   return (
