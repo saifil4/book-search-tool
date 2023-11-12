@@ -2,15 +2,13 @@
 import React from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const Pagination = ({ totalPages }) => {
+const Pagination = ({ totalPages, currentPage }) => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
 
     let pages = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pages.push(i);
-    }
+    for (let i = 1; i <= totalPages; i++) pages.push(i);
 
     const handleChange = (e) => {
         const pageValue = e.target.value;
@@ -20,11 +18,14 @@ const Pagination = ({ totalPages }) => {
     }
 
     return (
-        <select onChange={handleChange}>
-            {pages.map((page) => (
-                <option key={page} value={page}>{page}</option>
-            ))}
-        </select>
+        <>
+            <label htmlFor="page-selector">Go to page</label>
+            <select id="page-selector" onChange={handleChange} value={currentPage}>
+                {pages.map((page) => (
+                    <option key={page} value={page}>{page}</option>
+                ))}
+            </select>
+        </>
     )
 }
 

@@ -1,5 +1,3 @@
-
-// import { useState } from 'react';
 import styles from './page.module.css';
 import Card from '@/components/card';
 import SearchSection from '@/layouts/SearchSection';
@@ -23,12 +21,13 @@ export default async function Home({ searchParams }) {
   const bookList = data?.docs;
   const totalRecords = data?.numFound || 0;
   const startRecord = data?.start || 0;
+  const currentPage = Math.ceil(startRecord / 100) + 1;
   const totalPages = Math.ceil(totalRecords / 100);
 
   return (
     <main className={styles.main}>
       <SearchSection search={search} />
-      <Pagination totalPages={totalPages}/>
+      <Pagination totalPages={totalPages} currentPage={currentPage}/>
       <ul className='card-list'>
         {bookList?.map((item, index) => (
           <Card key={index} item={item} />
