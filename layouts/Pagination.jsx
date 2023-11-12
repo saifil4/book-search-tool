@@ -18,14 +18,14 @@ const Pagination = ({ totalPages, currentPage }) => {
     }
 
     return (
-        <>
+        <div>
             <label htmlFor="page-selector">Go to page</label>
-            <select id="page-selector" onChange={handleChange} value={currentPage}>
+            <select className='base-input sort' id="page-selector" onChange={handleChange} value={currentPage}>
                 {pages.map((page) => (
                     <option key={page} value={page}>{page}</option>
                 ))}
             </select>
-        </>
+        </div>
     )
 }
 
