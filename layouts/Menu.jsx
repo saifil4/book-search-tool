@@ -13,7 +13,7 @@ const Menu = ({ search }) => {
         if (searchValue.length === 0) return
         const params = new URLSearchParams(searchParams)
         params.set('search', searchValue)
-        router.push('/' + '?' + params.toString())
+        router.push('/search' + '?' + params.toString())
     }
 
     const handleChange = (e) => {

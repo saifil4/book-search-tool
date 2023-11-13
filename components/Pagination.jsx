@@ -14,7 +14,7 @@ const Pagination = ({ totalPages, currentPage, disabled }) => {
         const pageValue = e.target.value;
         const params = new URLSearchParams(searchParams)
         params.set('page', pageValue)
-        router.push('/' + '?' + params.toString())
+        router.push('/search' + '?' + params.toString())
     }
 
     return (

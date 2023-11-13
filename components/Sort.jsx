@@ -11,7 +11,7 @@ const Sort = ({ sort, disabled }) => {
         const sortValue = e.target.value;
         const params = new URLSearchParams(searchParams)
         params.set('sort', sortValue)
-        router.push('/' + '?' + params.toString())
+        router.push('/search' + '?' + params.toString())
     }
 
     return (
