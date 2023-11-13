@@ -1,16 +1,20 @@
 import React from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
 
 const Card = ({ item }) => {
   return (
     <li key={item.id}>
       <div className="card">
         <div className="image-container">
-          <Image
-            width="180"
-            height="275"
-            src={`https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg`} 
-            alt={item.title} />
+          {
+            item?.cover_i ? 
+            <Image
+              width="180"
+              height="275"
+              src={`https://covers.openlibrary.org/b/id/${item.cover_i}-M.jpg`} 
+              alt={item.title} /> :
+            <img src='./default_image.png' alt={item.title} />
+          }
         </div>
         <div>
           <h4>{item.title}</h4>

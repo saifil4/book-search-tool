@@ -23,12 +23,12 @@ label {
   font-size: 15px;
 }
 
-.nav{
+.nav {
   position: sticky;
   top: 0;
 }
 
-.main{
+.main {
   padding: 10px 0;
 }
 
@@ -55,7 +55,7 @@ label {
   padding: 10px;
   background: #fff;
   height: 45px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 
@@ -125,8 +125,14 @@ label {
   border-radius: 10px;
 }
 
-.author{
+.author {
   color: var(--primary-color);
+  font-weight: bold;
+}
+
+.no-result {
+  text-align: center;
+  margin-top: 20px;
   font-weight: bold;
 }
 
@@ -147,9 +153,5 @@ label {
   .image-container {
     width: 100px;
   }
-  
+
 }
-
-
-
-

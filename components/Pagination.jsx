@@ -2,7 +2,7 @@
 import React from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const Pagination = ({ totalPages, currentPage }) => {
+const Pagination = ({ totalPages, currentPage, disabled }) => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -20,7 +20,7 @@ const Pagination = ({ totalPages, currentPage }) => {
     return (
         <div>
             <label htmlFor="page-selector">Go to page</label>
-            <select className='base-input sort' id="page-selector" onChange={handleChange} value={currentPage}>
+            <select disabled={disabled} className='base-input sort' id="page-selector" onChange={handleChange} value={currentPage}>
                 {pages.map((page) => (
                     <option key={page} value={page}>{page}</option>
                 ))}

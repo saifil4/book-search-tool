@@ -20,6 +20,13 @@ const Menu = ({ search }) => {
         setSearchValue(e.target.value);
     }
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    }
+
+
     return (
         <div className='menu'>
             <input
@@ -27,6 +34,7 @@ const Menu = ({ search }) => {
                 className='base-input search'
                 placeholder="Search for books(eg. harry potter)"
                 onChange={handleChange}
+                onKeyDown={handleKeyPress}
                 value={searchValue} />
             <button className="button" onClick={handleSearch} >Search</button>
         </div>
