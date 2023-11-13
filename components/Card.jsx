@@ -6,19 +6,12 @@ const Card = ({ item }) => {
     <li key={item?.id} data-testid="book-item">
       <div className="card">
         <div className="image-container">
-          {
-            item?.cover_i ?
-              <Image
-                width="180"
-                height="275"
-                src={`https://covers.openlibrary.org/b/id/${item?.cover_i}-M.jpg`}
-                alt={item?.title} /> :
-              <Image
-                width="180"
-                height="275"
-                src="/default_image.png"
-                alt={item?.title} />
-          }
+          <Image
+            width="180"
+            height="275"
+            src={item?.cover_i ? `https://covers.openlibrary.org/b/id/${item?.cover_i}-M.jpg` : "/default_image.png"}
+            className='card-image'
+            alt={item?.title} />
         </div>
         <div>
           <h4>{item?.title}</h4>

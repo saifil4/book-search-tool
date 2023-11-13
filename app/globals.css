@@ -130,6 +130,10 @@ label {
   font-weight: bold;
 }
 
+.card-image {
+  height: 275px;
+}
+
 .no-result {
   text-align: center;
   margin-top: 20px;
@@ -142,6 +146,11 @@ label {
     flex-direction: row;
     align-items: flex-start;
     gap: 10px;
+  }
+
+  .card-image {
+    height: 90px;
+    width: auto;
   }
 
   .card-list {
