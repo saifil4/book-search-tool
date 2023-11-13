@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Card = ({ item }) => {
   return (
-    <li key={item?.id}>
+    <li key={item?.id} data-testid="book-item">
       <div className="card">
         <div className="image-container">
           {

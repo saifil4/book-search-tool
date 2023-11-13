@@ -1,25 +1,38 @@
 
+
 import React from 'react';
 import { render } from '@testing-library/react';
-import Card from '../components/Card';
+import CardList from '@/layouts/CardList';
 
-describe('Card component', () => {
-    // Define the test case
-    it('renders the card with the given data', () => {
-        // Define the dummy data to be passed to the component
-        const data = {
-            title: 'Test Book',
-            author: 'Test Author',
-            cover_i: null,
-        };
-
-        // Render the component with the dummy data
-        const { getByText, getByAltText } = render(<Card data={data} />);
-
-        // Assert that the component is correctly rendered with the given data
-        expect(getByText('Test Book')).toBeInTheDocument();
-        expect(getByText('Test Author')).toBeInTheDocument();
-        expect(getByAltText('Test Book')).toHaveAttribute('src', 'https://example.com/test.jpg');
-        expect(getByText('This is a test book.')).toBeInTheDocument();
+describe('Card List Component', () => {
+    it('Check if all books are rendered', () => {
+        const books = [
+            {
+                title: "Book 1",
+                cover_i: "cover1.jpg",
+                first_publish_year: 2001,
+                author_name: "Author 1"
+            },
+            {
+                title: "Book 2",
+                cover_i: "cover2.jpg",
+                first_publish_year: 2002,
+                author_name: "Author 2"
+            },
+            {
+                title: "Book 3",
+                cover_i: "cover3.jpg",
+                first_publish_year: 2003,
+                author_name: "Author 3"
+            }
+        ];
+        const { getAllByTestId } = render(<CardList bookList={books} />);
+        const bookElements = getAllByTestId('book-item');
+        for (let i = 0; i < books.length; i++) {
+            const element = bookElements[i];
+            const title = element.querySelector('h4');
+            expect(title.innerHTML).toContain(books[i].title);
+        }
     });
+
 });
