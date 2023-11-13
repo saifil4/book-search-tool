@@ -1,5 +1,5 @@
 ## How long did you spend on the coding assignment? 
-Spent around 18 hours on the assignment
+Spent around 20 hours on the assignment
 
 ## What would you add to your solution if you had more time?
 Following is rough list of features and practices that i would include
@@ -7,41 +7,39 @@ Following is rough list of features and practices that i would include
 2. Add a filter to exlude cards with no cover image which could improve the quality of results presented.
 3. Allow user to toggle more fields like links to other websites etc.
 4. Write better error and loading pages. currently it is very basic
+5. Do more QA and handle more edge cases
 
 ## What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that shows how you've used it.
     
 1. Pagination
     
-    'use client'
-    import React from 'react';
-    import { useRouter, useSearchParams } from 'next/navigation';
-    const Pagination = ({ totalPages, currentPage, disabled }) => {
+        'use client'
+        import React from 'react';
 
-        const router = useRouter();
-        const searchParams = useSearchParams();
+        const Pagination = ({ totalPages, currentPage, disabled, handleChange }) => {
 
         let pages = [];
         for (let i = 1; i <= totalPages; i++) pages.push(i);
 
-        const handleChange = (e) => {
-            const pageValue = e.target.value;
-            const params = new URLSearchParams(searchParams)
-            params.set('page', pageValue)
-            router.push('/' + '?' + params.toString())
-        }
 
         return (
-            <div>
+            <fieldset disabled={disabled} data-testid="page-selector">
                 <label htmlFor="page-selector">Go to page</label>
-                <select disabled={disabled} className='base-input sort' id="page-selector" onChange={handleChange} value={currentPage}>
+                <select
+                    value={currentPage}
+                    className='base-input sort'
+                    id="page-selector"
+                    onChange={handleChange}
+                >
                     {pages.map((page) => (
-                        <option key={page} value={page}>{page}</option>
+                        <option data-testid="page-option" key={page} value={page}>{page}</option>
                     ))}
                 </select>
-            </div>
-        )
-    }
-    export default Pagination
+            </fieldset>
+            )
+        }
+
+        export default Pagination
 
 2. Query Params, so that on refresh the search results still stay and url could be shared with others as is.
 
