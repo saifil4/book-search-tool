@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 
-const Search = ({ search }) => {
+const Search = ({ search, buttonClass = "button" }) => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -37,7 +37,7 @@ const Search = ({ search }) => {
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
                 value={searchValue} />
-            <button className="button" onClick={handleSearch} >Search</button>
+            <button className={buttonClass} onClick={handleSearch} >Search</button>
         </>
     )
 }

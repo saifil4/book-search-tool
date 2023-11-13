@@ -11,7 +11,7 @@ export default function Home() {
             <h1 className="home-title">Book Finder</h1>
             <p className="home-subtitle">Find your next favourite book to read</p>
           </div>
-          <Search search={null}/>
+          <Search search={null} buttonClass='button white'/>
         </div>
       </section>
     </main>
