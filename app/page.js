@@ -6,8 +6,6 @@ import SubMenu from '@/layouts/SubMenu';
 // sort
 // edge cases in url
 // test cases
-// SEO
-// UI
 
 const getData = async (searchValue, page) => {
   try {
