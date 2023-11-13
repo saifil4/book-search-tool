@@ -15,14 +15,14 @@ const Sort = ({ sort, disabled }) => {
     }
 
     return (
-        <div>
+        <fieldset disabled={disabled}>
             <label htmlFor='sort'>Sort by</label>
-            <select disabled={disabled} id="sort" className='base-input select' onChange={handleSort} value={sort}>
+            <select id="sort" className='base-input select' onChange={handleSort} value={sort}>
                 <option value='title'>Title ascending</option>
                 <option value='new'>Latest Published</option>
                 <option value='old'>Oldest Published</option>
             </select>
-        </div>
+        </fieldset>
     )
 }
 

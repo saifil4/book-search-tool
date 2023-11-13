@@ -15,7 +15,13 @@ const Card = ({ item }) => {
         </div>
         <div>
           <h4>{item?.title}</h4>
-          <p>by <span className="author">{item?.author_name}</span></p>
+          <p>
+            {
+              item?.author_name ?
+                <>by <span className="author">{item?.author_name}</span></> :
+                <span className="author">Author not found</span>
+            }
+          </p>
           {
             item?.first_publish_year &&
             <p>First published in {item?.first_publish_year}</p>
