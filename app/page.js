@@ -1,12 +1,8 @@
-import Card from '@/components/Card';
 import Menu from '@/layouts/Menu';
 import SubMenu from '@/layouts/SubMenu';
+import CardList from '@/layouts/CardList';
 
-// error handling- > add a error page
-// edge cases in url -> testing
 // test cases
-// WCAG
-// Loading state
 // mulitple author name
 
 const getData = async (searchValue, page, sort) => {
@@ -19,7 +15,6 @@ const getData = async (searchValue, page, sort) => {
   } catch (e) {
     console.error(e);
     throw e;
-    // return { error: true }
   }
 }
 
@@ -42,16 +37,12 @@ export default async function Home({ searchParams }) {
       </nav>
       <main className="main">
         {
-          search && bookList.length === 0 && <p className="no-result">No results found for <i>"{search}"</i></p>
+          search && bookList.length === 0 && <p className="no-result">No results found for <i>&quot;{search}&quot;</i></p>
         }
         {
           !search && bookList.length === 0 && <p className="no-result">Search to find your next read</p>
         }
-        <ul className='card-list'>
-          {bookList?.map((item, index) => (
-            <Card key={index} item={item} />
-          ))}
-        </ul>
+        <CardList bookList={bookList} />
       </main>
     </>
   )
