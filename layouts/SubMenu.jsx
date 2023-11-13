@@ -1,7 +1,7 @@
 'use client'
 import React from 'react';
-import Pagination from './Pagination';
-import Sort from './Sort';
+import Pagination from '../components/Pagination';
+import Sort from '../components/Sort';
 
 const SubMenu = ({ sort, totalPages, currentPage }) => {
 

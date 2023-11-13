@@ -1,4 +1,4 @@
-import Card from '@/layouts/Card';
+import Card from '@/components/Card';
 import Menu from '@/layouts/Menu';
 import SubMenu from '@/layouts/SubMenu';
 
