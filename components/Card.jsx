@@ -13,18 +13,18 @@ const Card = ({ item }) => {
             className='card-image'
             alt={item?.title} />
         </div>
-        <div>
-          <h4>{item?.title}</h4>
+        <div className='body'>
+          <h4 className='title'>{item?.title}</h4>
           <p>
             {
               item?.author_name ?
-                <>by <span className="author">{item?.author_name}</span></> :
-                <span className="author">Author not found</span>
+                <>by <span className="sub-title">{item?.author_name}</span></> :
+                <span className="sub-title">Author not found</span>
             }
           </p>
           {
             item?.first_publish_year &&
-            <p>First published in {item?.first_publish_year}</p>
+            <p className='text'>First published in {item?.first_publish_year}</p>
           }
         </div>
       </div>
