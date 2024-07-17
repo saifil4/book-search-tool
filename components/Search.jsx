@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 
-const Search = ({ search, buttonClass = "button" }) => {
+const Search = ({ search }) => {
 
     const router = useRouter();
     const searchParams = useSearchParams();
@@ -27,17 +27,17 @@ const Search = ({ search, buttonClass = "button" }) => {
         }
     }
 
-
     return (
         <>
             <input
+                tabIndex={0}
                 type='text'
                 className='base-input search'
                 placeholder="Search for books(eg. harry potter)"
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
                 value={searchValue} />
-            <button className={buttonClass} onClick={handleSearch} >Search</button>
+            <button tabIndex={1} className="button" onClick={handleSearch} >Search</button>
         </>
     )
 }

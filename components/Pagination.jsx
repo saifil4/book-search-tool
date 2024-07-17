@@ -11,6 +11,7 @@ const Pagination = ({ totalPages, currentPage, disabled, handleChange }) => {
         <fieldset disabled={disabled} data-testid="page-selector">
             <label htmlFor="page-selector">Go to page</label>
             <select
+                tabIndex={3}
                 value={currentPage}
                 className='base-input sort'
                 id="page-selector"
