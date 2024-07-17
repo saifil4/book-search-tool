@@ -35,8 +35,9 @@ const Search = ({ search }) => {
                 placeholder="Search for books(eg. harry potter)"
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
+                aria-label='Enter name to search for books'
                 value={searchValue} />
-            <button className="button" onClick={handleSearch} >Search</button>
+            <button className="button" aria-label="Click to search for books" onClick={handleSearch} >Search</button>
         </>
     )
 }

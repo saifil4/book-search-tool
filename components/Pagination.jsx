@@ -15,6 +15,7 @@ const Pagination = ({ totalPages, currentPage, disabled, handleChange }) => {
                 className='base-input sort'
                 id="page-selector"
                 onChange={handleChange}
+                aria-label="Select a page"
             >
                 {pages.map((page) => (
                     <option data-testid="page-option" key={page} value={page}>{page}</option>
