@@ -30,14 +30,13 @@ const Search = ({ search }) => {
     return (
         <>
             <input
-                tabIndex={0}
                 type='text'
                 className='base-input search'
                 placeholder="Search for books(eg. harry potter)"
                 onChange={handleChange}
                 onKeyDown={handleKeyPress}
                 value={searchValue} />
-            <button tabIndex={1} className="button" onClick={handleSearch} >Search</button>
+            <button className="button" onClick={handleSearch} >Search</button>
         </>
     )
 }
