@@ -8,6 +8,7 @@ Following is rough list of features and practices that i would include
 3. Allow user to toggle more fields like links to other websites etc.
 4. Write better error and loading pages. currently it is very basic
 5. Do more QA and handle more edge cases
+6. There is no load indicator for sort and pagination.
 
 ## What was the most useful feature that was added to the latest version of your chosen language? Please include a snippet of code that shows how you've used it.
     
